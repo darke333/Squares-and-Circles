@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/SquaresAndCircles/Scenes/preloader.unity
+    guid: ff2fed8ba4943f34096e6476a115ba49
+  - enabled: 1
+    path: Assets/SquaresAndCircles/Scenes/ui_scene.unity
+    guid: c41c186e8f1ac9b4194a692fdd357f84
+  - enabled: 1
+    path: Assets/SquaresAndCircles/Scenes/gameplay.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

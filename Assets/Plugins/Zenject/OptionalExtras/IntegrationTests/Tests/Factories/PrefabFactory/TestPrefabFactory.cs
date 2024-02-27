@@ -69,7 +69,8 @@ namespace Zenject.Tests.Factories
         {
             PreInstall();
 
-            Container.BindFactory<string, string, Foo2, Foo2.Factory2>().FromFactory<PrefabResourceFactory<string, Foo2>>();
+            Container.BindFactory<string, string, Foo2, Foo2.Factory2>()
+                     .FromFactory<PrefabResourceFactory<string, Foo2>>();
             Container.Bind<IInitializable>().To<Runner4>().AsSingle().WithArguments(Foo2PrefabResourcePath);
 
             PostInstall();
@@ -78,14 +79,14 @@ namespace Zenject.Tests.Factories
 
         public class Runner : IInitializable
         {
-            readonly GameObject _prefab;
+            readonly GameObject  _prefab;
             readonly Foo.Factory _fooFactory;
 
             public Runner(
                 Foo.Factory fooFactory,
                 GameObject prefab)
             {
-                _prefab = prefab;
+                _prefab     = prefab;
                 _fooFactory = fooFactory;
             }
 
@@ -99,14 +100,14 @@ namespace Zenject.Tests.Factories
 
         public class Runner2 : IInitializable
         {
-            readonly GameObject _prefab;
+            readonly GameObject   _prefab;
             readonly Foo2.Factory _fooFactory;
 
             public Runner2(
                 Foo2.Factory fooFactory,
                 GameObject prefab)
             {
-                _prefab = prefab;
+                _prefab     = prefab;
                 _fooFactory = fooFactory;
             }
 
@@ -120,7 +121,7 @@ namespace Zenject.Tests.Factories
 
         public class Runner3 : IInitializable
         {
-            readonly string _prefabPath;
+            readonly string       _prefabPath;
             readonly Foo.Factory2 _fooFactory;
 
             public Runner3(
@@ -140,7 +141,7 @@ namespace Zenject.Tests.Factories
 
         public class Runner4 : IInitializable
         {
-            readonly string _prefabPath;
+            readonly string        _prefabPath;
             readonly Foo2.Factory2 _fooFactory;
 
             public Runner4(

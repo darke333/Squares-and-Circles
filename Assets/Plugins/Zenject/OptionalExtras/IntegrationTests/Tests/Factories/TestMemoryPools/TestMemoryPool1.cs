@@ -1,4 +1,3 @@
-
 using System.Collections;
 using ModestTree;
 using UnityEngine.TestTools;
@@ -77,29 +76,6 @@ namespace Zenject.Tests.Bindings
             yield break;
         }
 
-        class Foo
-        {
-            public string Value
-            {
-                get;
-                private set;
-            }
-
-            public int ResetCount
-            {
-                get; private set;
-            }
-
-            public class Pool : MemoryPool<string, Foo>
-            {
-                protected override void Reinitialize(string value, Foo foo)
-                {
-                    foo.Value = value;
-                    foo.ResetCount++;
-                }
-            }
-        }
-
         [UnityTest]
         public IEnumerator TestAbstractMemoryPoolValidate()
         {
@@ -124,9 +100,25 @@ namespace Zenject.Tests.Bindings
         {
             PreInstall();
             Container.BindMemoryPool<IBar, BarPool>()
-                .WithInitialSize(3).To<Bar>().NonLazy();
+                     .WithInitialSize(3).To<Bar>().NonLazy();
 
             PostInstall();
+        }
+
+        class Foo
+        {
+            public string Value { get; private set; }
+
+            public int ResetCount { get; private set; }
+
+            public class Pool : MemoryPool<string, Foo>
+            {
+                protected override void Reinitialize(string value, Foo foo)
+                {
+                    foo.Value = value;
+                    foo.ResetCount++;
+                }
+            }
         }
 
         public interface IBar
@@ -142,4 +134,3 @@ namespace Zenject.Tests.Bindings
         }
     }
 }
-

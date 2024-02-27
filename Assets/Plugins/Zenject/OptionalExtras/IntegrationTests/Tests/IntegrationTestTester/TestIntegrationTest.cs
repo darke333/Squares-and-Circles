@@ -7,35 +7,12 @@ namespace Zenject.Tests
 {
     public class TestIntegrationTest : ZenjectIntegrationTestFixture
     {
-        public class Foo : IInitializable, IDisposable
-        {
-            public static bool WasDisposed
-            {
-                get; set;
-            }
-
-            public static bool WasInitialized
-            {
-                get; set;
-            }
-
-            public void Initialize()
-            {
-                WasInitialized = true;
-            }
-
-            public void Dispose()
-            {
-                WasDisposed = true;
-            }
-        }
-
         [UnityTest]
         public IEnumerator TestRun()
         {
             PreInstall();
 
-            Foo.WasDisposed = false;
+            Foo.WasDisposed    = false;
             Foo.WasInitialized = false;
 
             Container.BindInterfacesTo<Foo>().AsSingle();
@@ -69,6 +46,23 @@ namespace Zenject.Tests
             Assert.That(ProjectContext.HasInstance);
             yield return DestroyEverything();
             Assert.That(!ProjectContext.HasInstance);
+        }
+
+        public class Foo : IInitializable, IDisposable
+        {
+            public static bool WasDisposed { get; set; }
+
+            public static bool WasInitialized { get; set; }
+
+            public void Initialize()
+            {
+                WasInitialized = true;
+            }
+
+            public void Dispose()
+            {
+                WasDisposed = true;
+            }
         }
     }
 }

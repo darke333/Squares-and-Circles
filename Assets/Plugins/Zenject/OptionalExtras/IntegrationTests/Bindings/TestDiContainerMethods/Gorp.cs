@@ -7,13 +7,13 @@ namespace Zenject.Tests.Bindings.DiContainerMethods
 {
     public class Gorp : MonoBehaviour
     {
-        [Inject]
-        string _arg;
-
         public string Arg
         {
             get { return _arg; }
         }
+
+        [Inject]
+        string _arg;
 
         [Inject]
         public void Initialize()
