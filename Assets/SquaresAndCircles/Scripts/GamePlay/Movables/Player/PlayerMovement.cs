@@ -67,6 +67,7 @@ namespace SquaresAndCircles.GamePlay.Movables.Player
         private void OnFingerDown(Vector2 pos)
         {
             CheckIfPlayerPressed(pos);
+            AddMovingPoints(pos);
         }
 
         private void RestartMovement()
@@ -96,7 +97,7 @@ namespace SquaresAndCircles.GamePlay.Movables.Player
 
         private void Move()
         {
-            if (_movePoints.Count > 1)
+            if (_movePoints.Count > 0)
             {
                 transform.position = Vector3.MoveTowards(transform.position, _movePoints.Peek(), _speed);
                 if (_speed > _endSpeed)

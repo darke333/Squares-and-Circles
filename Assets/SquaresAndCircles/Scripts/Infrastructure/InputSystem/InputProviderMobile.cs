@@ -19,15 +19,17 @@ namespace SquaresAndCircles.Infrastructure.InputSystem
             Observable.EveryUpdate()
                       .Subscribe(_ =>
                       {
-                          if (Input.touchCount > 0)
+                          if (Input.touchCount <= 0) return;
+                          Touch touch = Input.GetTouch(0);
+
+                          switch (touch.phase)
                           {
-                              Touch touch = Input.GetTouch(0);
-
-                              if (touch.phase == TouchPhase.Began)
+                              case TouchPhase.Began:
                                   OnFingerDown?.Invoke(touch.position);
-
-                              if (touch.phase == TouchPhase.Moved)
+                                  break;
+                              case TouchPhase.Moved:
                                   OnFingerPressing?.Invoke(touch.position);
+                                  break;
                           }
                       });
         }

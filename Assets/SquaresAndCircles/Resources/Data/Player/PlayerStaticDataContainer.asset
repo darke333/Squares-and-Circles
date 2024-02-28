@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerStaticDataContainer
   m_EditorClassIdentifier: 
   _startSpeed: 0.075
-  _endSpeed: 0.025
-  _acceleration: 0.035
+  _endSpeed: 0.04
+  _acceleration: 0.025
